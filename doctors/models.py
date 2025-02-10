@@ -9,4 +9,4 @@ class DoctorProfile(models.Model):
     availability = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.specialty}"
