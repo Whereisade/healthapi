@@ -8,6 +8,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ['email', 'password', 'role']
         extra_kwargs = {'password': {'write_only': True}}
 
+    def validate_email(self, value):
+        if '@' not in value:
+            raise serializers.ValidationError("Enter a valid email address with an '@'.")
+        return value
+
     def create(self, validated_data):
         user = CustomUser.objects.create_user(
             email=validated_data['email'],
