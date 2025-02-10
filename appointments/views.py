@@ -35,3 +35,16 @@ class AppointmentStatusUpdateView(generics.UpdateAPIView):
         if self.request.user.role != "doctor" or appointment.doctor.user != self.request.user:
             raise ValidationError("Only the assigned doctor can update this appointment.")
         serializer.save()
+
+class AppointmentCancellationView(generics.UpdateAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_update(self, serializer):
+        appointment = self.get_object()
+        
+        if appointment.patient != self.request.user:
+            raise ValidationError("Only the patient who booked the appointment can cancel it.")
+        
+        serializer.save(status="cancelled")

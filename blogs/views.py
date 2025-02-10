@@ -2,6 +2,8 @@ from rest_framework import generics, permissions
 from rest_framework.exceptions import ValidationError
 from .models import Blog
 from .serializers import BlogSerializer
+from rest_framework.response import Response
+from rest_framework import status
 
 #doctors only
 class BlogListCreateView(generics.ListCreateAPIView):
@@ -30,3 +32,12 @@ class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.user != instance.author:
             raise ValidationError("You can only delete your own blogs.")
         instance.delete()
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            self.perform_destroy(instance)
+            return Response({"message": "Blog deleted successfully."}, status=status.HTTP_200_OK)
+        except Exception as e:
+           
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

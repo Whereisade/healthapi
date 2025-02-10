@@ -7,7 +7,8 @@ class Appointment(models.Model):
     STATUS_CHOICES =[
         ('pending', 'Pending'),
         ('accepted', 'Accepted'),
-        ('declined', 'Declined')
+        ('declined', 'Declined'),
+        ('cancelled', 'Cancelled'),
     ]
     
     appointment_id = models.AutoField(primary_key=True)
