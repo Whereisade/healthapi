@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import CustomUser
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from patient.serializers import PatientProfileSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,6 +25,15 @@ class RegisterSerializer(serializers.ModelSerializer):
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-        data['email'] = self.user.email
+        
         data['role'] = self.user.role
         return data
+    
+
+class PatientDetailsSerializer(serializers.ModelSerializer):
+    # This will include additional details from the patient profile
+    patient_profile = PatientProfileSerializer(read_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'role', 'patient_profile']

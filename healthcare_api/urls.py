@@ -27,7 +27,8 @@ urlpatterns = [
     path('auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('doctors/', include('doctors.urls')),
     path('appointments/', include('appointments.urls')),
-    path('blogs/', include('blogs.urls'))
+    path('blogs/', include('blogs.urls')),
+    path('patient/', include('patient.urls'))
 ]
 
 if settings.DEBUG:
