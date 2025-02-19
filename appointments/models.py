@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from doctors.models import DoctorProfile
 
-# Create your models here.
+
 class Appointment(models.Model):
     STATUS_CHOICES =[
         ('pending', 'Pending'),

@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 class PatientProfile(models.Model):
-    # Link this profile to your custom user model
+    
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE, 

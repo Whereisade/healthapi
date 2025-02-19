@@ -31,9 +31,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     
 
 class PatientDetailsSerializer(serializers.ModelSerializer):
-    # This will include additional details from the patient profile
+    
     patient_profile = PatientProfileSerializer(read_only=True)
 
     class Meta:
         model = CustomUser
-        fields = ['id', 'email', 'role', 'patient_profile']
+        fields = ['patient_profile']
