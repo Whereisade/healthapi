@@ -11,7 +11,8 @@ class AppointmentSerializer(serializers.ModelSerializer):
     # patient = serializers.StringRelatedField()
     
     
-    doctor = DoctorProfileSerializer(read_only=True)
+    # doctor = DoctorProfileSerializer(read_only=True)
+    doctor= serializers.StringRelatedField()
     
     
     doctor_id = serializers.PrimaryKeyRelatedField(
