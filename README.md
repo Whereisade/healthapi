@@ -128,7 +128,7 @@ DATABASE_URL=postgres://user:password@host:port/dbname  # If using PostgreSQL
 
 ### User Endpoints
 
-- **Register:** `POST /auth/register/`
+- **Register:** `POST /auth/users/register/`
   - **Body:**
     ```json
     {
@@ -139,7 +139,7 @@ DATABASE_URL=postgres://user:password@host:port/dbname  # If using PostgreSQL
     ```
   - **Response:** Confirmation message
 
-- **Login:** `POST /auth/login/`
+- **Login:** `POST /auth/users/login/`
   - **Body:**
     ```json
     {
