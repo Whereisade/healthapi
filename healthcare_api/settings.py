@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'blogs',
     'doctors',
     'patient',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "https://healthcare-eta-liard.vercel.app/",  
+    "http://localhost:3000",  
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 ROOT_URLCONF = 'healthcare_api.urls'
 
